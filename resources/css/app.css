@@ -97,11 +97,11 @@
 
     --radius: 0.625rem;
 
-    --sidebar: #110e0e;
+    --sidebar: #aa3838;
     --sidebar-foreground: #ffffff;
     --sidebar-primary: #f41e1e;
     --sidebar-primary-foreground: #ffffff;
-    --sidebar-accent: oklch(0.2 0 0);
+    --sidebar-accent: oklch(28.091% 0.07109 22.767);
     --sidebar-accent-foreground: #ffffff;
     --sidebar-border: oklch(0.25 0 0);
     --sidebar-ring: #f41e1e;

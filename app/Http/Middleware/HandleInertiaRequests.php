@@ -45,6 +45,9 @@ class HandleInertiaRequests extends Middleware
             'location',
             'email',
             'phone',
+            'instagram',
+            'linkedin',
+            'facebook'
         ])->pluck('content', 'key');
 
         return [
@@ -61,6 +64,9 @@ class HandleInertiaRequests extends Middleware
                 'location' => $settings['location'] ?? '',
                 'email' => $settings['email'] ?? '',
                 'phone' => $settings['phone'] ?? '',
+                'instagram' => $settings['instagram'] ?? '',
+                'facebook' => $settings['facebook'] ?? '',
+                'linkedin' => $settings['linkedin'] ?? '',
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
         ];

@@ -128,7 +128,7 @@ const Footer = () => {
                             <li key={link.label}>
                                 <a
                                     href={link.href}
-                                    className="flex items-center gap-2 text-white/70 hover:text-white transition-colors"
+                                    className="flex items-center gap-2 text-white/50 hover:text-primary text-sm transition-colors"
                                 >
                                     <ChevronsRight size={14} className="text-primary" />
                                     {link.label}
@@ -147,7 +147,7 @@ const Footer = () => {
                             <li key={link.label}>
                                 <a
                                     href={link.href}
-                                    className="flex items-center gap-2 text-white/70 hover:text-white transition-colors"
+                                    className="flex items-center gap-2 text-white/50 hover:text-primary text-sm transition-colors"
                                 >
                                     <ChevronsRight size={14} className="text-primary" />
                                     {link.label}
@@ -156,6 +156,9 @@ const Footer = () => {
                         ))}
                     </ul>
                 </div>
+            </div>
+            <div className='bg-black/70 p-8 w-full text-center'>
+                © 2026 First Fitness. All Rights Reserved. Designed By: <a href="https://www.degvora.com" className='hover:underline hover:text-primary'>Degvora</a>
             </div>
         </footer>
     )

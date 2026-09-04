@@ -2,6 +2,7 @@ import { usePage } from '@inertiajs/react'
 import React, { useState } from 'react'
 import { Link } from '@inertiajs/react'
 import { Mail, Phone, ChevronDown, ChevronRight, Menu, X, Facebook, Instagram, Linkedin } from 'lucide-react'
+import FrontendButton from './button'
 
 const Navbar = () => {
 
@@ -40,11 +41,11 @@ const Navbar = () => {
             {/* Top strip */}
             <div className="relative border-b border-black/10 max-w-6xl mx-auto">
                 <span
-                    className="absolute -top-6 left-0 w-px h-16 bg-black/10 origin-top"
+                    className="absolute -top-6 -left-5 w-px h-16 bg-black/10 origin-top"
                     style={{ transform: 'rotate(-20deg)' }}
                 />
                 <span
-                    className="absolute -top-6 right-0 w-px h-16 bg-black/20 origin-top"
+                    className="absolute -top-6 -right-5 w-px h-16 bg-black/20 origin-top"
                     style={{ transform: 'rotate(20deg)' }}
                 />
                 <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between text-sm">
@@ -159,15 +160,7 @@ const Navbar = () => {
 
                 {/* Right side: CTA + hamburger */}
                 <div className="flex items-center gap-3">
-                    <a
-                        href={settings?.phone ?? 'https://wa.me/925200000'}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hidden sm:flex items-center gap-2 bg-red-600 hover:bg-red-700 transition-colors text-white text-sm font-semibold px-5 py-3 rounded-full"
-                    >
-                        <Phone size={16} />
-                        Get a Quote
-                    </a>
+                    <FrontendButton>Get a Qoute</FrontendButton>
 
                     <button
                         onClick={() => setMobileOpen(!mobileOpen)}
