@@ -38,7 +38,15 @@ const Navbar = () => {
     return (
         <header className="w-full bg-white shadow-sm relative z-50">
             {/* Top strip */}
-            <div className="border-b border-black/5">
+            <div className="relative border-b border-black/10 max-w-6xl mx-auto">
+                <span
+                    className="absolute -top-6 left-0 w-px h-16 bg-black/10 origin-top"
+                    style={{ transform: 'rotate(-20deg)' }}
+                />
+                <span
+                    className="absolute -top-6 right-0 w-px h-16 bg-black/20 origin-top"
+                    style={{ transform: 'rotate(20deg)' }}
+                />
                 <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between text-sm">
                     <div className="flex items-center gap-6 text-red-600 font-medium">
                         <a
@@ -74,7 +82,7 @@ const Navbar = () => {
             {/* Main nav row */}
             <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-8">
                 {/* Logo */}
-                <Link href="/" className="flex-shrink-0">
+                <Link href="/" className="shrink-0">
                     <img
                         src={settings?.logo_black ? `/storage/${settings?.logo_black}` : '/assets/images/logo-white.png'}
                         alt={settings?.name ?? 'First Fitness'}
@@ -112,11 +120,10 @@ const Navbar = () => {
                                         >
                                             <Link
                                                 href={link.href}
-                                                className={`flex items-center justify-between px-4 py-2 text-sm font-normal transition-colors ${
-                                                    activeSubmenu === link.label
-                                                        ? 'text-red-600 bg-gray-50'
-                                                        : 'text-black/80 hover:bg-gray-50 hover:text-red-600'
-                                                }`}
+                                                className={`flex items-center justify-between px-4 py-2 text-sm font-normal transition-colors ${activeSubmenu === link.label
+                                                    ? 'text-red-600 bg-gray-50'
+                                                    : 'text-black/80 hover:bg-gray-50 hover:text-red-600'
+                                                    }`}
                                             >
                                                 {link.label}
                                                 {link.children && <ChevronRight size={14} />}
@@ -165,7 +172,7 @@ const Navbar = () => {
                     <button
                         onClick={() => setMobileOpen(!mobileOpen)}
                         aria-label="Toggle menu"
-                        className="w-11 h-11 flex-shrink-0 md:hidden rounded-full border border-black/15 flex items-center justify-center hover:bg-gray-50 transition-colors"
+                        className="w-11 h-11 shrink-0 md:hidden rounded-full border border-black/15 flex items-center justify-center hover:bg-gray-50 transition-colors"
                     >
                         {mobileOpen ? <X size={18} /> : <Menu size={18} />}
                     </button>
