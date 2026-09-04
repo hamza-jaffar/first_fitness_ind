@@ -19,3 +19,16 @@ export type AuthLayoutProps = {
     title?: string;
     description?: string;
 };
+
+export type SettingType = {
+    logo_white: string;
+    logo_black: string;
+    name: string;
+    description: string;
+    location: string;
+    phone: string;
+    email: string;
+    instagram: string;
+    facebook: string;
+    linkedin: string;
+}

@@ -14,8 +14,16 @@ class SettingSeeder extends Seeder
     {
         $settings = [
             [
-                'key' => 'logo',
-                'content' => '/uploads/images/logo.png',
+                'key' => 'logo_black',
+                'content' => '/uploads/images/logo-black.png',
+            ],
+            [
+                'key' => 'logo_white',
+                'content' => '/uploads/images/logo-white.svg',
+            ],
+            [
+                'key' => 'name',
+                'content' => 'First Fitness Ind',
             ],
             [
                 'key' => 'favicon',
@@ -36,6 +44,19 @@ class SettingSeeder extends Seeder
             [
                 'key' => 'phone',
                 'content' => '+923466624947',
+            ],
+
+            [
+                'key' => 'instagram',
+                'content' => 'https://www.instagram.com',
+            ],
+            [
+                'key' => 'facebook',
+                'content' => 'https://www.facebook.com',
+            ],
+            [
+                'key' => 'linkedin',
+                'content' => 'https://www.linkedin.com',
             ],
         ];
 

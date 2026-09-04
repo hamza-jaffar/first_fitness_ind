@@ -4,6 +4,7 @@ import { TooltipProvider } from '@/components/ui/tooltip';
 import AppLayout from '@/layouts/app-layout';
 import AuthLayout from '@/layouts/auth-layout';
 import SettingsLayout from '@/layouts/settings/layout';
+import GuestLayout from '@/layouts/guest-layout';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -12,7 +13,7 @@ void createInertiaApp({
     layout: (name) => {
         switch (true) {
             case name.startsWith('frontend/'):
-                return null;
+                return GuestLayout;
             case name.startsWith('auth/'):
                 return AuthLayout;
             case name.startsWith('settings/'):
