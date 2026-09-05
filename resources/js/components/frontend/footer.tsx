@@ -1,5 +1,4 @@
-import { usePage } from '@inertiajs/react'
-import React from 'react'
+import { Link, usePage } from '@inertiajs/react'
 import { MapPin, Mail, Phone, Instagram, Facebook, Linkedin, ChevronsRight } from 'lucide-react'
 
 const Footer = () => {
@@ -10,7 +9,7 @@ const Footer = () => {
         { label: 'Home', href: '/' },
         { label: 'About Us', href: '/about' },
         { label: 'Contact Us', href: '/contact' },
-        { label: 'Fair & Exhibitions', href: '/fair-exhibitions' },
+        { label: 'Fair & Exhibitions', href: '/production-tour' },
         { label: 'Sublimation Process', href: '/sublimation-process' },
     ]
 
@@ -71,12 +70,12 @@ const Footer = () => {
                             <p className="text-xs uppercase tracking-wide text-white/60 font-semibold ">
                                 Phone Number
                             </p>
-                            <a
+                            <Link
                                 href={`tel:${settings?.phone ?? '+925200000'}`}
                                 className="text-lg font-bold hover:text-primary"
                             >
                                 {settings?.phone ?? '+92 52 00000'}
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -95,27 +94,27 @@ const Footer = () => {
                         Martial Arts, MMA Gear and Fitness Equipment in Sialkot-Pakistan
                     </p>
                     <div className="flex items-center gap-3 mt-6">
-                        <a
+                        <Link
                             href={settings?.instagram ?? '#'}
                             aria-label="Instagram"
                             className="w-9 h-9 rounded bg-white text-black flex items-center justify-center hover:bg-white/80 transition-colors"
                         >
                             <Instagram size={16} />
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                             href={settings?.facebook ?? '#'}
                             aria-label="Facebook"
                             className="w-9 h-9 rounded bg-white text-black flex items-center justify-center hover:bg-white/80 transition-colors"
                         >
                             <Facebook size={16} />
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                             href={settings?.linkedin ?? '#'}
                             aria-label="LinkedIn"
                             className="w-9 h-9 rounded bg-white text-black flex items-center justify-center hover:bg-white/80 transition-colors"
                         >
                             <Linkedin size={16} />
-                        </a>
+                        </Link>
                     </div>
                 </div>
 
@@ -126,13 +125,13 @@ const Footer = () => {
                     <ul className="space-y-3">
                         {quickLinks.map((link) => (
                             <li key={link.label}>
-                                <a
+                                <Link
                                     href={link.href}
                                     className="flex items-center gap-2 text-white/50 hover:text-primary text-sm transition-colors"
                                 >
                                     <ChevronsRight size={14} className="text-primary" />
                                     {link.label}
-                                </a>
+                                </Link>
                             </li>
                         ))}
                     </ul>
@@ -145,13 +144,13 @@ const Footer = () => {
                     <ul className="space-y-3">
                         {categoryLinks.map((link) => (
                             <li key={link.label}>
-                                <a
+                                <Link
                                     href={link.href}
                                     className="flex items-center gap-2 text-white/50 hover:text-primary text-sm transition-colors"
                                 >
                                     <ChevronsRight size={14} className="text-primary" />
                                     {link.label}
-                                </a>
+                                </Link>
                             </li>
                         ))}
                     </ul>

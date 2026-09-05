@@ -6,7 +6,7 @@ const GuestLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <section>
             <Navbar />
-            <section className='p-4 max-w-7xl mx-auto w-full'>
+            <section className=''>
                 {children}
             </section>
             <Footer />

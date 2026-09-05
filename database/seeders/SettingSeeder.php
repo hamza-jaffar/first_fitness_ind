@@ -58,6 +58,10 @@ class SettingSeeder extends Seeder
                 'key' => 'linkedin',
                 'content' => 'https://www.linkedin.com',
             ],
+            [
+                'key' => 'breadcrumb_img',
+                'content' => '/uploads/images/breadcrumb-bg.jpg',
+            ],
         ];
 
         foreach ($settings as $setting) {

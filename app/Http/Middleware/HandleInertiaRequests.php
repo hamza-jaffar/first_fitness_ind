@@ -47,7 +47,8 @@ class HandleInertiaRequests extends Middleware
             'phone',
             'instagram',
             'linkedin',
-            'facebook'
+            'facebook',
+            'breadcrumb_img',
         ])->pluck('content', 'key');
 
         return [
@@ -67,6 +68,7 @@ class HandleInertiaRequests extends Middleware
                 'instagram' => $settings['instagram'] ?? '',
                 'facebook' => $settings['facebook'] ?? '',
                 'linkedin' => $settings['linkedin'] ?? '',
+                'breadcrumb_img' => $settings['breadcrumb_img'] ?? '',
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
         ];

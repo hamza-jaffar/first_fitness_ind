@@ -94,7 +94,7 @@ const Navbar = () => {
                 {/* Desktop nav links */}
                 <nav className="hidden lg:flex items-center gap-8 text-sm font-semibold tracking-wide text-black">
                     <Link href="/" className="hover:text-red-600 transition-colors">HOME</Link>
-                    <Link href="/about" className="hover:text-red-600 transition-colors">ABOUT</Link>
+                    <Link href="/about-us" className="hover:text-red-600 transition-colors">ABOUT</Link>
 
                     <div
                         className="relative"
@@ -155,7 +155,7 @@ const Navbar = () => {
                     </div>
 
                     <Link href="/production-tour" className="hover:text-red-600 transition-colors">PRODUCTION TOUR</Link>
-                    <Link href="/contact" className="hover:text-red-600 transition-colors">CONTACT US</Link>
+                    <Link href="/contact-us" className="hover:text-red-600 transition-colors">CONTACT US</Link>
                 </nav>
 
                 {/* Right side: CTA + hamburger */}
@@ -176,7 +176,7 @@ const Navbar = () => {
             {mobileOpen && (
                 <div className="lg:hidden border-t border-black/5 px-6 py-4 space-y-1 text-sm font-semibold text-black">
                     <Link href="/" className="block py-2 hover:text-red-600">HOME</Link>
-                    <Link href="/about" className="block py-2 hover:text-red-600">ABOUT</Link>
+                    <Link href="/about-us" className="block py-2 hover:text-red-600">ABOUT</Link>
 
                     <button
                         onClick={() => setProductsOpen(!productsOpen)}
@@ -229,7 +229,7 @@ const Navbar = () => {
                     )}
 
                     <Link href="/production-tour" className="block py-2 hover:text-red-600">PRODUCTION TOUR</Link>
-                    <Link href="/contact" className="block py-2 hover:text-red-600">CONTACT US</Link>
+                    <Link href="/contact-us" className="block py-2 hover:text-red-600">CONTACT US</Link>
 
                     <a
                         href={settings?.phone ?? 'https://wa.me/925200000'}
