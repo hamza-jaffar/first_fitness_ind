@@ -13,6 +13,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard/contacts', [\App\Http\Controllers\Admin\ContactController::class, 'index'])->name('dashboard.contacts.index');
     Route::delete('dashboard/contacts/{contact}', [\App\Http\Controllers\Admin\ContactController::class, 'destroy'])->name('dashboard.contacts.destroy');
     
+    // Categories
+    Route::get('dashboard/categories', [\App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('dashboard.categories.index');
+    Route::post('dashboard/categories', [\App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('dashboard.categories.store');
+    Route::put('dashboard/categories/{category}', [\App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('dashboard.categories.update');
+    Route::delete('dashboard/categories/{category}', [\App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('dashboard.categories.destroy');
+    
     Route::get('dashboard/pages/{slug}/edit', [\App\Http\Controllers\Admin\PageController::class, 'edit'])->name('dashboard.pages.edit');
     Route::put('dashboard/pages/{slug}', [\App\Http\Controllers\Admin\PageController::class, 'update'])->name('dashboard.pages.update');
     

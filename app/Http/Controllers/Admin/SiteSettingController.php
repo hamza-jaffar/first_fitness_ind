@@ -28,8 +28,21 @@ class SiteSettingController extends Controller
             // Handle file uploads separately if any (assuming direct upload for logo/favicon)
             if ($request->hasFile($key)) {
                 $file = $request->file($key);
-                $path = $file->store('uploads/images', 'public');
-                $content = $path;
+                
+                $existingSetting = Setting::where('key', $key)->first();
+                
+                if ($existingSetting && $existingSetting->content) {
+                    $filename = basename($existingSetting->content);
+                } else {
+                    $filename = $file->getClientOriginalName();
+                }
+
+                $path = $file->storeAs('uploads/images', $filename, 'public');
+                
+                // Keep the exact previous path if it existed, otherwise construct new one
+                $content = $existingSetting && $existingSetting->content 
+                            ? $existingSetting->content 
+                            : '/storage/' . $path;
             }
 
             if ($content !== null) {
