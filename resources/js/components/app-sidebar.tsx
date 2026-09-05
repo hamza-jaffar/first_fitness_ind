@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { BookOpen, FolderGit2, LayoutGrid } from 'lucide-react';
+import { BookOpen, FolderGit2, LayoutGrid, Users, FileText, Info, Layers, ShieldCheck, FileCheck, Factory, Settings } from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
@@ -21,6 +21,41 @@ const mainNavItems: NavItem[] = [
         title: 'Dashboard',
         href: dashboard(),
         icon: LayoutGrid,
+    },
+    {
+        title: 'Contacts',
+        href: '/dashboard/contacts',
+        icon: Users,
+    },
+    {
+        title: 'About Us',
+        href: '/dashboard/pages/about-us/edit',
+        icon: Info,
+    },
+    {
+        title: 'Sublimation Process',
+        href: '/dashboard/pages/sublimation-process/edit',
+        icon: Layers,
+    },
+    {
+        title: 'Privacy Policy',
+        href: '/dashboard/pages/privacy-policy/edit',
+        icon: ShieldCheck,
+    },
+    {
+        title: 'Terms & Conditions',
+        href: '/dashboard/pages/terms-and-conditions/edit',
+        icon: FileCheck,
+    },
+    {
+        title: 'Production Tour',
+        href: '/dashboard/pages/production-tour/edit',
+        icon: FileText,
+    },
+    {
+        title: 'Site Settings',
+        href: '/dashboard/settings/site',
+        icon: Settings,
     },
 ];
 
@@ -57,7 +92,7 @@ export function AppSidebar() {
             </SidebarContent>
 
             <SidebarFooter>
-                <NavFooter items={footerNavItems} className="mt-auto" />
+                {/* <NavFooter items={footerNavItems} className="mt-auto" /> */}
                 <NavUser />
             </SidebarFooter>
         </Sidebar>

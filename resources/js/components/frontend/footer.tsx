@@ -7,10 +7,12 @@ const Footer = () => {
 
     const quickLinks = [
         { label: 'Home', href: '/' },
-        { label: 'About Us', href: '/about' },
-        { label: 'Contact Us', href: '/contact' },
+        { label: 'About Us', href: '/about-us' },
+        { label: 'Contact Us', href: '/contact-us' },
         { label: 'Fair & Exhibitions', href: '/production-tour' },
         { label: 'Sublimation Process', href: '/sublimation-process' },
+        { label: 'Terms & Condition', href: '/terms-and-conditions' },
+        { label: 'Privacy Policy', href: '/privacy-policy' }
     ]
 
     const categoryLinks = [

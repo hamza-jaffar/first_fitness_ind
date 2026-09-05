@@ -116,4 +116,37 @@
         background-color: var(--background);
         color: var(--foreground);
     }
+
+    /* Fix Tailwind reset affecting rich text editors */
+    .jodit-wysiwyg h1, .prose-editor h1 { font-size: 2em; font-weight: bold; margin-bottom: 0.5em; margin-top: 0.5em; }
+    .jodit-wysiwyg h2, .prose-editor h2 { font-size: 1.5em; font-weight: bold; margin-bottom: 0.5em; margin-top: 0.5em; }
+    .jodit-wysiwyg h3, .prose-editor h3 { font-size: 1.17em; font-weight: bold; margin-bottom: 0.5em; margin-top: 0.5em; }
+    .jodit-wysiwyg h4, .prose-editor h4 { font-size: 1em; font-weight: bold; margin-bottom: 0.5em; margin-top: 0.5em; }
+    .jodit-wysiwyg h5, .prose-editor h5 { font-size: 0.83em; font-weight: bold; margin-bottom: 0.5em; margin-top: 0.5em; }
+    .jodit-wysiwyg h6, .prose-editor h6 { font-size: 0.67em; font-weight: bold; margin-bottom: 0.5em; margin-top: 0.5em; }
+    .jodit-wysiwyg ul, .prose-editor ul { list-style-type: disc; padding-left: 2em; margin-bottom: 1em; }
+    .jodit-wysiwyg ol, .prose-editor ol { list-style-type: decimal; padding-left: 2em; margin-bottom: 1em; }
+}
+
+.admin-panel {
+    /* Updated, more neutral admin panel colors */
+    --sidebar: #f4f4f5; /* zinc-100 */
+    --sidebar-foreground: #09090b; /* zinc-950 */
+    --sidebar-primary: #18181b; /* zinc-900 */
+    --sidebar-primary-foreground: #fafafa; /* zinc-50 */
+    --sidebar-accent: #e4e4e7; /* zinc-200 */
+    --sidebar-accent-foreground: #09090b;
+    --sidebar-border: #e4e4e7;
+    --sidebar-ring: #18181b;
+}
+
+.dark .admin-panel {
+    --sidebar: #09090b; /* zinc-950 */
+    --sidebar-foreground: #fafafa;
+    --sidebar-primary: #fafafa;
+    --sidebar-primary-foreground: #18181b;
+    --sidebar-accent: #27272a; /* zinc-800 */
+    --sidebar-accent-foreground: #fafafa;
+    --sidebar-border: #27272a;
+    --sidebar-ring: #d4d4d8;
 }

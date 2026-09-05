@@ -9,12 +9,14 @@ export default function AppSidebarLayout({
     breadcrumbs = [],
 }: AppLayoutProps) {
     return (
-        <AppShell variant="sidebar">
-            <AppSidebar />
-            <AppContent variant="sidebar" className="min-w-0 overflow-x-clip">
-                <AppSidebarHeader breadcrumbs={breadcrumbs} />
-                {children}
-            </AppContent>
-        </AppShell>
+        <div className="admin-panel flex min-h-screen w-full flex-col">
+            <AppShell variant="sidebar">
+                <AppSidebar />
+                <AppContent variant="sidebar" className="min-w-0 overflow-x-clip">
+                    <AppSidebarHeader breadcrumbs={breadcrumbs} />
+                    {children}
+                </AppContent>
+            </AppShell>
+        </div>
     );
 }
