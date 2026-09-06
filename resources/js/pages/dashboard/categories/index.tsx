@@ -2,6 +2,7 @@ import { Head, router, useForm } from '@inertiajs/react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import {
     Dialog,
     DialogClose,
@@ -59,11 +60,14 @@ export default function Categories({ categories, allCategories, filters }: any) 
         name: '',
         slug: '',
         parent_category_id: '',
+        desc: '',
+        image_file: null as File | null,
     });
 
     const handleCreate = (e: React.FormEvent) => {
         e.preventDefault();
         createPost('/dashboard/categories', {
+            forceFormData: true,
             preserveScroll: true,
             onSuccess: () => {
                 setIsCreateOpen(false);
@@ -73,10 +77,13 @@ export default function Categories({ categories, allCategories, filters }: any) 
         });
     };
 
-    const { data: editData, setData: setEditData, put: editPut, processing: editProcessing, errors: editErrors, reset: editReset } = useForm({
+    const { data: editData, setData: setEditData, post: editPost, processing: editProcessing, errors: editErrors, reset: editReset } = useForm({
         name: '',
         slug: '',
         parent_category_id: '',
+        desc: '',
+        image_file: null as File | null,
+        _method: 'put',
     });
 
     const openEditModal = (cat: any) => {
@@ -85,6 +92,9 @@ export default function Categories({ categories, allCategories, filters }: any) 
             name: cat.name,
             slug: cat.slug,
             parent_category_id: cat.parent_category_id || '',
+            desc: cat.desc || '',
+            image_file: null,
+            _method: 'put',
         });
         setIsEditOpen(true);
     };
@@ -93,7 +103,8 @@ export default function Categories({ categories, allCategories, filters }: any) 
         e.preventDefault();
         if (!editingCategory) return;
         
-        editPut(`/dashboard/categories/${editingCategory.id}`, {
+        editPost(`/dashboard/categories/${editingCategory.id}`, {
+            forceFormData: true,
             preserveScroll: true,
             onSuccess: () => {
                 setIsEditOpen(false);
@@ -180,6 +191,16 @@ export default function Categories({ categories, allCategories, filters }: any) 
                                         </select>
                                         {createErrors.parent_category_id && <p className="text-sm text-red-500">{createErrors.parent_category_id}</p>}
                                     </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="create_desc">Description</Label>
+                                        <Textarea id="create_desc" value={createData.desc} onChange={(e) => setCreateData('desc', e.target.value)} />
+                                        {createErrors.desc && <p className="text-sm text-red-500">{createErrors.desc}</p>}
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="create_image">Category Image</Label>
+                                        <Input id="create_image" type="file" accept="image/*" onChange={(e) => setCreateData('image_file', e.target.files?.[0] || null)} />
+                                        {createErrors.image_file && <p className="text-sm text-red-500">{createErrors.image_file}</p>}
+                                    </div>
                                     <DialogFooter>
                                         <DialogClose asChild>
                                             <Button variant="outline" type="button">Cancel</Button>
@@ -230,6 +251,17 @@ export default function Categories({ categories, allCategories, filters }: any) 
                                 </select>
                                 {editErrors.parent_category_id && <p className="text-sm text-red-500">{editErrors.parent_category_id}</p>}
                             </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="edit_desc">Description</Label>
+                                <Textarea id="edit_desc" value={editData.desc} onChange={(e) => setEditData('desc', e.target.value)} />
+                                {editErrors.desc && <p className="text-sm text-red-500">{editErrors.desc}</p>}
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="edit_image">Category Image</Label>
+                                <Input id="edit_image" type="file" accept="image/*" onChange={(e) => setEditData('image_file', e.target.files?.[0] || null)} />
+                                {editingCategory?.image && <img src={editingCategory.image} alt={editingCategory.name} className="mt-2 h-20 w-20 rounded-md object-cover" />}
+                                {editErrors.image_file && <p className="text-sm text-red-500">{editErrors.image_file}</p>}
+                            </div>
                             <DialogFooter>
                                 <DialogClose asChild>
                                     <Button variant="outline" type="button">Cancel</Button>
@@ -252,6 +284,12 @@ export default function Categories({ categories, allCategories, filters }: any) 
                                         Slug <SortIcon field="slug" />
                                     </th>
                                     <th className="p-4 font-medium">
+                                        Image
+                                    </th>
+                                    <th className="p-4 font-medium">
+                                        Description
+                                    </th>
+                                    <th className="p-4 font-medium">
                                         Parent Category
                                     </th>
                                     <th className="p-4 font-medium cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors" onClick={() => handleSort('created_at')}>
@@ -263,7 +301,7 @@ export default function Categories({ categories, allCategories, filters }: any) 
                             <tbody>
                                 {categories.data.length === 0 ? (
                                     <tr>
-                                        <td colSpan={5} className="p-8 text-center text-neutral-500">
+                                        <td colSpan={7} className="p-8 text-center text-neutral-500">
                                             No categories found.
                                         </td>
                                     </tr>
@@ -272,6 +310,8 @@ export default function Categories({ categories, allCategories, filters }: any) 
                                         <tr key={cat.id} className="border-b hover:bg-neutral-50 dark:hover:bg-neutral-900/50">
                                             <td className="p-4 font-medium">{cat.name}</td>
                                             <td className="p-4 text-neutral-500">{cat.slug}</td>
+                                            <td className="p-4">{cat.image ? <img src={cat.image} alt={cat.name} className="h-10 w-10 rounded-md object-cover" /> : <span className="text-xs text-neutral-400">No image</span>}</td>
+                                            <td className="max-w-xs p-4 text-neutral-500">{cat.desc || <span className="text-xs italic text-neutral-400">No description</span>}</td>
                                             <td className="p-4">
                                                 {cat.parent ? (
                                                     <span className="inline-flex items-center rounded-md bg-neutral-100 px-2.5 py-0.5 text-xs font-semibold text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200">

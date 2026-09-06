@@ -1,4 +1,4 @@
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import { ArrowLeft, Minus, Plus } from 'lucide-react';
 import { useState } from 'react';
 import FrontendBreadcrumb from '@/components/frontend/breadcrumb';
@@ -8,9 +8,14 @@ type Product = { id: number; title: string; slug: string; art_no: string; short_
 const imageUrl = (path?: string | null) => path ? (path.startsWith('http') || path.startsWith('/') ? path : `/storage/${path}`) : '';
 
 export default function Product({ product, relatedProducts }: { product: Product; relatedProducts: Product[] }) {
+    const { settings } = usePage().props as { settings?: { phone?: string } };
     const gallery = [product.thumbnail, ...(product.images ?? [])].filter(Boolean) as string[];
     const [selectedImage, setSelectedImage] = useState(gallery[0]);
-    const [quantity, setQuantity] = useState(1);
+    const [quantity, setQuantity] = useState(2);
+    const whatsappPhone = (settings?.phone || '925200000').replace(/\D/g, '');
+    const productUrl = typeof window !== 'undefined' ? window.location.href : '';
+    const whatsappMessage = `Hello, I would like to inquire about this product:\n\nProduct: ${product.title} | ${product.art_no} |\nArt No: ${product.art_no}\nQty: ${quantity}\nLink: ${productUrl}`;
+    const whatsappUrl = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(whatsappMessage)}`;
 
     return <>
         <Head title={product.meta_title || product.title}>
@@ -28,7 +33,7 @@ export default function Product({ product, relatedProducts }: { product: Product
                 <div className="flex flex-col justify-center"><p className="text-xs font-bold uppercase tracking-[0.2em] text-red-600">{product.art_no}</p><h1 className="mt-3 text-3xl font-bold text-zinc-950 md:text-4xl">{product.title}</h1><p className="mt-5 text-sm leading-7 text-zinc-600">{product.short_desc || 'Designed for movement, comfort, and reliable performance.'}</p><div className="prose prose-sm mt-5 max-w-none text-zinc-600" dangerouslySetInnerHTML={{ __html: product.desc ?? '' }} />
                     {product.sizes?.length ? <div className="mt-6"><p className="mb-2 text-sm font-bold text-zinc-950">Available sizes</p><div className="flex flex-wrap gap-2">{product.sizes.map((size) => <span key={size} className="rounded-md border px-3 py-1.5 text-xs text-zinc-600">{size}</span>)}</div></div> : null}
                     {product.colors?.length ? <div className="mt-5"><p className="mb-2 text-sm font-bold text-zinc-950">Colors</p><div className="flex flex-wrap gap-2">{product.colors.map((color) => <span key={color} className="rounded-md border px-3 py-1.5 text-xs text-zinc-600">{color}</span>)}</div></div> : null}
-                    <div className="mt-7 flex flex-wrap items-center gap-3"><div className="flex h-11 items-center rounded-md border"><button type="button" className="p-3" onClick={() => setQuantity(Math.max(1, quantity - 1))}><Minus className="h-3 w-3" /></button><span className="w-8 text-center text-sm">{quantity}</span><button type="button" className="p-3" onClick={() => setQuantity(quantity + 1)}><Plus className="h-3 w-3" /></button></div><FrontendButton>Request a quote</FrontendButton></div>
+                    <div className="mt-7 flex flex-wrap items-center gap-3"><div className="flex h-11 items-center rounded-md border"><button type="button" className="p-3" onClick={() => setQuantity(Math.max(1, quantity - 1))}><Minus className="h-3 w-3" /></button><span className="w-8 text-center text-sm">{quantity}</span><button type="button" className="p-3" onClick={() => setQuantity(quantity + 1)}><Plus className="h-3 w-3" /></button></div><FrontendButton href={whatsappUrl} target="_blank" rel="noopener noreferrer">Request a quote</FrontendButton></div>
                 </div>
             </section>
             {relatedProducts.length ? <section className="mt-20 border-t pt-12"><div className="mb-8 text-center"><p className="text-xs font-bold uppercase tracking-[0.2em] text-red-600">You may also like</p><h2 className="mt-2 text-3xl font-bold text-zinc-950">Related Products</h2></div><div className="grid grid-cols-2 gap-5 md:grid-cols-4">{relatedProducts.map((related) => <Link key={related.id} href={`/product/${related.slug}`} className="group text-center"><div className="flex aspect-square items-center justify-center overflow-hidden rounded-xl border border-zinc-200 p-2">{related.thumbnail ? <img src={imageUrl(related.thumbnail)} alt={related.title} className="h-full w-full object-contain transition duration-500 group-hover:scale-105" /> : <span className="text-xs text-zinc-400">No image</span>}</div><h3 className="mt-3 text-sm font-bold">{related.title}</h3><p className="text-xs text-zinc-500">{related.art_no}</p></Link>)}</div></section> : null}

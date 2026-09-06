@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable('name', 'slug', 'parent_category_id')]
+#[Fillable('name', 'slug', 'parent_category_id', 'image', 'desc')]
 class Category extends Model
 {
     public function parent(): BelongsTo
