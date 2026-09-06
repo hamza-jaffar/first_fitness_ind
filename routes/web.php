@@ -12,8 +12,9 @@ Route::inertia('/', 'frontend/welcome')->name('home');
 Route::inertia('/contact-us', 'frontend/contact-us')->name('contactus');
 Route::post('/contact-us/store', [ContactController::class, 'store'])->name('contactstore');
 Route::get('/category/{slug}', [ProductController::class, 'index'])->name('products');
-Route::get('/category/{parent_category}/{slug}', [ProductController::class, 'index'])
+Route::get('/category/{parent_category}/{slug}', [ProductController::class, 'subcategory'])
     ->name('products.subcategory');
+Route::get('/product/{slug}', [ProductController::class, 'show'])->name('product.show');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::inertia('dashboard', 'dashboard/dashboard')->name('dashboard');
