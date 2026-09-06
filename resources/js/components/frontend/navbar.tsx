@@ -3,38 +3,16 @@ import React, { useState } from 'react'
 import { Link } from '@inertiajs/react'
 import { Mail, Phone, ChevronDown, ChevronRight, Menu, X, Facebook, Instagram, Linkedin } from 'lucide-react'
 import FrontendButton from './button'
+import { structureCategories } from '@/lib/utils'
 
 const Navbar = () => {
 
-    const { settings } = usePage().props;
+    const { settings, categories } = usePage().props;
     const [productsOpen, setProductsOpen] = useState<boolean>(false)
     const [activeSubmenu, setActiveSubmenu] = useState<string | null>(null)
     const [mobileOpen, setMobileOpen] = useState<boolean>(false)
     const [mobileSubOpen, setMobileSubOpen] = useState<string | null>(null)
-
-    const productLinks = [
-        { label: 'Boxing Gear', href: '/category/boxing-gear' },
-        { label: 'Martial Arts', href: '/category/martial-arts' },
-        { label: 'MMA Gear', href: '/category/mma-gear' },
-        { label: 'Casual Wears', href: '/category/casual-wears' },
-        { label: 'Sports Uniforms', href: '/category/sports-uniforms' },
-        { label: 'Fitness Wears', href: '/category/fitness-wears' },
-        {
-            label: 'Uniforms',
-            href: '/category/uniforms',
-            children: [
-                { label: 'Company Uniforms', href: '/category/uniforms/company-uniforms' },
-                { label: 'Corporate Uniforms', href: '/category/uniforms/corporate-uniforms' },
-                { label: 'Hotel Uniforms', href: '/category/uniforms/hotel-uniforms' },
-                { label: 'Industrial Uniforms', href: '/category/uniforms/industrial-uniforms' },
-                { label: 'Medical Uniforms', href: '/category/uniforms/medical-uniforms' },
-                { label: 'Labor Uniforms', href: '/category/uniforms/labor-uniforms' },
-                { label: 'Militaria Uniforms', href: '/category/uniforms/militaria-uniforms' },
-                { label: 'School Uniforms', href: '/category/uniforms/school-uniforms' },
-                { label: 'Team Uniforms', href: '/category/uniforms/team-uniforms' },
-            ],
-        },
-    ]
+    const productLinks = structureCategories(categories);
 
     return (
         <header className="w-full bg-white shadow-sm relative z-50">

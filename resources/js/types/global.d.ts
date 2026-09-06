@@ -1,5 +1,6 @@
 import type { Auth } from '@/types/auth';
 import { SettingType } from '@/types/ui';
+import { CategoryType } from './data';
 
 declare module 'react' {
     interface InputHTMLAttributes<T> {
@@ -13,6 +14,7 @@ declare module '@inertiajs/core' {
             name: string;
             auth: Auth;
             settings: SettingType;
+            categories: CategoryType[];
             sidebarOpen: boolean;
             [key: string]: unknown;
         };

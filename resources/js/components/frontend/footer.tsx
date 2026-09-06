@@ -1,9 +1,11 @@
+import { structureCategories } from '@/lib/utils';
 import { Link, usePage } from '@inertiajs/react'
 import { MapPin, Mail, Phone, Instagram, Facebook, Linkedin, ChevronsRight } from 'lucide-react'
 
 const Footer = () => {
 
-    const { settings } = usePage().props;
+    const { settings, categories } = usePage().props;
+    const categoryLinks = structureCategories(categories);
 
     const quickLinks = [
         { label: 'Home', href: '/' },
@@ -15,14 +17,6 @@ const Footer = () => {
         { label: 'Privacy Policy', href: '/privacy-policy' }
     ]
 
-    const categoryLinks = [
-        { label: 'Boxing Gear', href: '/category/boxing-gear' },
-        { label: 'Martial Arts', href: '/category/martial-arts' },
-        { label: 'MMA Gear', href: '/category/mma-gear' },
-        { label: 'Fitness Gear', href: '/category/fitness-gear' },
-        { label: 'Fitness Wears', href: '/category/fitness-wears' },
-        { label: 'Uniforms', href: '/category/uniforms' },
-    ]
 
     return (
         <footer

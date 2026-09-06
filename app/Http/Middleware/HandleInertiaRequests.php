@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Category;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -51,6 +52,8 @@ class HandleInertiaRequests extends Middleware
             'breadcrumb_img',
         ])->pluck('content', 'key');
 
+        $categories = Category::all();
+
         return [
             ...parent::share($request),
             'name' => config('app.name'),
@@ -70,6 +73,7 @@ class HandleInertiaRequests extends Middleware
                 'linkedin' => $settings['linkedin'] ?? '',
                 'breadcrumb_img' => $settings['breadcrumb_img'] ?? '',
             ],
+            'categories' => $categories,
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
         ];
     }
