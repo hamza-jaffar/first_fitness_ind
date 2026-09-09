@@ -27,6 +27,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SettingSeeder::class,
             PageSeeder::class,
+            CategorySeeder::class,
+            SliderSeeder::class,
+            FrontendDataSeeder::class
         ]);
     }
 }

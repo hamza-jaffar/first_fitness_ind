@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\SiteSettingController;
@@ -9,7 +10,7 @@ use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Frontend\ProductController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', HomeController::class)->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::inertia('/contact-us', 'frontend/contact-us')->name('contactus');
 Route::post('/contact-us/store', [ContactController::class, 'store'])->name('contactstore');
 Route::get('/category/{slug}', [ProductController::class, 'index'])->name('products');
@@ -39,6 +40,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('dashboard/settings/site', [SiteSettingController::class, 'edit'])->name('dashboard.settings.site.edit');
     Route::post('dashboard/settings/site', [SiteSettingController::class, 'update'])->name('dashboard.settings.site.update');
+
+    // Sliders / Banners
+    Route::get('dashboard/banner', [BannerController::class, 'index'])->name('dashboard.banner.index');
+    Route::post('dashboard/banner', [BannerController::class, 'store'])->name('dashboard.banner.store');
+    Route::put('dashboard/banner/{slider}', [BannerController::class, 'update'])->name('dashboard.banner.update');
+    Route::delete('dashboard/banner/{slider}', [BannerController::class, 'destroy'])->name('dashboard.banner.destroy');
+    Route::patch('dashboard/banner/{slider}/toggle-status', [BannerController::class, 'toggleStatus'])->name('dashboard.banner.toggle-status');
 });
 
 require __DIR__.'/settings.php';

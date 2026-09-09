@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { BookOpen, FolderGit2, LayoutGrid, Users, FileText, Settings, ListTree, Info, Layers, ShieldCheck, FileCheck, Package } from 'lucide-react';
+import { BookOpen, FolderGit2, LayoutGrid, Users, FileText, Settings, ListTree, Info, Layers, ShieldCheck, FileCheck, Package, Sliders } from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
@@ -67,6 +67,11 @@ const mainNavItems: NavItem[] = [
         href: '/dashboard/settings/site',
         icon: Settings,
     },
+    {
+        title: 'Sliders',
+        href: '/dashboard/banner',
+        icon: Sliders
+    }
 ];
 
 const footerNavItems: NavItem[] = [
